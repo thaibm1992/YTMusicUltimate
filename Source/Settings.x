@@ -21,12 +21,12 @@
     if (@available(iOS 13, *)) {
         UIGraphicsImageRenderer *renderer = [[UIGraphicsImageRenderer alloc] initWithSize:CGSizeMake(24, 24)];
         icon = [renderer imageWithActions:^(UIGraphicsImageRendererContext * _Nonnull rendererContext) {
-            UIImage *flameImage = [UIImage systemImageNamed:@"flame"];
+            UIImage *flameImage = [UIImage systemImageNamed:@"pencil.slash"];
             UIView *imageView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 24, 24)];
             UIImageView *flameImageView = [[UIImageView alloc] initWithImage:flameImage];
             flameImageView.contentMode = UIViewContentModeScaleAspectFit;
             flameImageView.clipsToBounds = YES;
-            flameImageView.tintColor = [UIColor redColor];
+            flameImageView.tintColor = [UIColor whiteColor];
             flameImageView.frame = imageView.bounds;
 
             [imageView addSubview:flameImageView];
@@ -35,7 +35,7 @@
     }
 
     //Create the YTMusicUltimate button
-    YTMAccountButton *button = [[%c(YTMAccountButton) alloc] initWithTitle:@"YTMusicUltimate" identifier:@"ytmult" icon:icon actionBlock:^(BOOL arg4) {
+    YTMAccountButton *button = [[%c(YTMAccountButton) alloc] initWithTitle:@"IOSMOD.NET" identifier:@"ytmult" icon:icon actionBlock:^(BOOL arg4) {
         //Push YTMusicUltimate view controller.
         UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:[[YTMUltimateSettingsController alloc] init]];
         [nav setModalPresentationStyle: UIModalPresentationFullScreen];
