@@ -1,5 +1,5 @@
 "SETTINGS" = "Ayarlar";
-"ENABLED" = "YTMusicUltimate'i etkinleştir";
+"ENABLED" = "etkinleştir";
 "ENABLED_DESC" = "Premium özellikler, reklam engelleme, arka planda oynatma vb.";
 "RESTART_FOOTER" = "Değişiklikleri uygulamak için uygulamayı yeniden başlatın";
 
@@ -63,7 +63,7 @@
 "APPLY_DESC" = "Değişiklikleri uygulamak için uygulamayı kapatır.";
 
 "LINKS" = "Bağlantılar";
-"TWITTER" = "Twitter'da %@'i takip edin";
+"TWITTER" = "%@";
 "TWITTER_DESC" = "Güncellemeler için beni takip edin";
 "DISCORD" = "Discord'a Katılın";
 "DISCORD_DESC" = "Hataları bildirin ve özellikler talep edin";
