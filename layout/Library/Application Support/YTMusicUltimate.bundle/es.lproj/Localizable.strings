@@ -1,5 +1,5 @@
 "SETTINGS" = "Ajustes";
-"ENABLED" = "Activar YTMusicUltimate";
+"ENABLED" = "Activar";
 "ENABLED_DESC" = "Funciones premium, sin anuncios, reproducción en segundo plano, etc.";
 "RESTART_FOOTER" = "Reinicia la aplicación para aplicar los cambios";
 
@@ -63,7 +63,7 @@
 "APPLY_DESC" = "Cierra la aplicación para aplicar los cambios";
 
 "LINKS" = "Enlaces";
-"TWITTER" = "Sígueme en Twitter: %@";
+"TWITTER" = "%@";
 "TWITTER_DESC" = "Sígueme para recibir actualizaciones";
 "DISCORD" = "Únete a Discord";
 "DISCORD_DESC" = "Informa sobre errores y solicita funciones";
