@@ -64,7 +64,7 @@
 "APPLY_DESC" = "按下套用會關閉 APP 讓變更生效";
 
 "LINKS" = "相關連結";
-"TWITTER" = "在推特上跟隨%@";
+"TWITTER" = "%@";
 "TWITTER_DESC" = "跟隨我獲得更新資訊";
 "DISCORD" = "加入Discord";
 "DISCORD_DESC" = "回報問題和請求新功能";
