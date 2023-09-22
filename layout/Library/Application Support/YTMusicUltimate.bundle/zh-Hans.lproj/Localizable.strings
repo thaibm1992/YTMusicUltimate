@@ -64,7 +64,7 @@
 "APPLY_DESC" = "按下应用会关闭APP以应用变更";
 
 "LINKS" = "相关链接";
-"TWITTER" = "在推特上关注%@";
+"TWITTER" = "%@";
 "TWITTER_DESC" = "获取更新消息";
 "DISCORD" = "加入Discord";
 "DISCORD_DESC" = "反馈问题和请求新功能";
