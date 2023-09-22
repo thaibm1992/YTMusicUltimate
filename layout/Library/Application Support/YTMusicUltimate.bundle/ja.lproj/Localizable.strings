@@ -63,7 +63,7 @@
 "APPLY_DESC" = "アプリを終了して変更を適用します";
 
 "LINKS" = "リンク";
-"TWITTER" = "ツイッターで %@ をフォロー";
+"TWITTER" = "%@";
 "TWITTER_DESC" = "更新情報を入手する";
 "DISCORD" = "Discordサーバーに参加";
 "DISCORD_DESC" = "バグの報告と機能のリクエスト";
