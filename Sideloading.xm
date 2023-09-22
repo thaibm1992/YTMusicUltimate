@@ -27,30 +27,13 @@ NSBundle *tweakBundle = YTMusicUltimateBundle();
 @interface YTAlertView : UIView
 @property (nonatomic, copy, readwrite) NSString *title;
 @property (nonatomic, copy, readwrite) NSString *subtitle;
++ (instancetype)infoDialog;
 + (instancetype)confirmationDialogWithAction:(void (^)(void))action actionTitle:(NSString *)actionTitle;
 - (void)show;
 @end
 
 @interface SSOConfiguration : NSObject
 @end
-
-static NSString *accessGroupID() {
-    NSDictionary *query = [NSDictionary dictionaryWithObjectsAndKeys:
-                           (__bridge NSString *)kSecClassGenericPassword, (__bridge NSString *)kSecClass,
-                           @"bundleSeedID", kSecAttrAccount,
-                           @"", kSecAttrService,
-                           (id)kCFBooleanTrue, kSecReturnAttributes,
-                           nil];
-    CFDictionaryRef result = nil;
-    OSStatus status = SecItemCopyMatching((__bridge CFDictionaryRef)query, (CFTypeRef *)&result);
-    if (status == errSecItemNotFound)
-        status = SecItemAdd((__bridge CFDictionaryRef)query, (CFTypeRef *)&result);
-        if (status != errSecSuccess)
-            return nil;
-    NSString *accessGroup = [(__bridge NSDictionary *)result objectForKey:(__bridge NSString *)kSecAttrAccessGroup];
-
-    return accessGroup;
-}
 
 %group SideloadingFixes
 //Fix login (2) - Ginsu & AhmedBakfir
@@ -77,29 +60,47 @@ static NSString *accessGroupID() {
 
 //Force enable safari sign-in
 %hook SSOConfiguration
-- (BOOL)shouldEnableSafariSignIn { return YES; }
-- (BOOL)temporarilyDisableSafariSignIn { return NO; }
-- (void)setTemporarilyDisableSafariSignIn:(BOOL)arg1 { return %orig(NO); }
+- (BOOL)shouldEnableSafariSignIn {
+    return YES;
+}
 %end
 
 %hook SSOKeychainHelper
+//FIX 5.52 LOGIN
 + (id)accessGroup {
-    return accessGroupID();
+    NSDictionary *query = [NSDictionary dictionaryWithObjectsAndKeys:
+                           (__bridge NSString *)kSecClassGenericPassword, (__bridge NSString *)kSecClass,
+                           @"bundleSeedID", kSecAttrAccount,
+                           @"", kSecAttrService,
+                           (id)kCFBooleanTrue, kSecReturnAttributes,
+                           nil];
+    CFDictionaryRef result = nil;
+    OSStatus status = SecItemCopyMatching((__bridge CFDictionaryRef)query, (CFTypeRef *)&result);
+    if (status == errSecItemNotFound)
+        status = SecItemAdd((__bridge CFDictionaryRef)query, (CFTypeRef *)&result);
+    if (status != errSecSuccess)
+        return nil;
+    NSString *accessGroup = [(__bridge NSDictionary *)result objectForKey:(__bridge NSString *)kSecAttrAccessGroup];
+
+    return accessGroup;
 }
 
 + (id)sharedAccessGroup {
-    return accessGroupID();
-}
-%end
+    NSDictionary *query = [NSDictionary dictionaryWithObjectsAndKeys:
+                           (__bridge NSString *)kSecClassGenericPassword, (__bridge NSString *)kSecClass,
+                           @"bundleSeedID", kSecAttrAccount,
+                           @"", kSecAttrService,
+                           (id)kCFBooleanTrue, kSecReturnAttributes,
+                           nil];
+    CFDictionaryRef result = nil;
+    OSStatus status = SecItemCopyMatching((__bridge CFDictionaryRef)query, (CFTypeRef *)&result);
+    if (status == errSecItemNotFound)
+        status = SecItemAdd((__bridge CFDictionaryRef)query, (CFTypeRef *)&result);
+    if (status != errSecSuccess)
+        return nil;
+    NSString *accessGroup = [(__bridge NSDictionary *)result objectForKey:(__bridge NSString *)kSecAttrAccessGroup];
 
-%hook SSOKeychainCore
-//Thanks to jawshoeadan for this hook.
-+ (id)accessGroup {
-    return accessGroupID();
-}
-
-+ (id)sharedAccessGroup {
-    return accessGroupID();
+    return accessGroup;
 }
 %end
 
@@ -225,9 +226,11 @@ static NSString *accessGroupID() {
 
     NSString *bundleIdentifier = originalInfoDictionary[@"CFBundleIdentifier"];
     if (![bundleIdentifier isEqualToString:YT_BUNDLE_ID]) {
-        NSMutableDictionary *newInfoDictionary = [NSMutableDictionary dictionaryWithDictionary:originalInfoDictionary];
-        [newInfoDictionary setValue:YT_BUNDLE_ID forKey:@"CFBundleIdentifier"];
-        return newInfoDictionary;
+        if ([bundleIdentifier hasPrefix:@"com.google.ios.youtube."] || ![bundleIdentifier hasPrefix:@"com.google"]) {
+            NSMutableDictionary *newInfoDictionary = [NSMutableDictionary dictionaryWithDictionary:originalInfoDictionary];
+            [newInfoDictionary setValue:YT_BUNDLE_ID forKey:@"CFBundleIdentifier"];
+            return newInfoDictionary;
+        }
     } return originalInfoDictionary;
 }
 %end
@@ -246,9 +249,8 @@ static NSString *accessGroupID() {
 - (void)viewDidDisappear:(bool)arg1 {
     %orig;
 
-    YTAlertView *alertView = [%c(YTAlertView) confirmationDialogWithAction:^{
-        exit(0);
-    } actionTitle:@"OK"];
+    NSBundle *tweakBundle = YTMusicUltimateBundle();
+    YTAlertView *alertView = [%c(YTAlertView) infoDialog];
     alertView.title = LOC(@"WARNING");
     alertView.subtitle = LOC(@"LOGIN_INFO");
     [alertView show];
