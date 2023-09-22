@@ -1,5 +1,5 @@
 "SETTINGS" = "Nustatymai";
-"ENABLED" = "Įjungti \"YTMusicUltimate\"";
+"ENABLED" = "Įjungti";
 "ENABLED_DESC" = "\"Premium\" funkcijos, reklamų panaikinimas, foninis atkūrimas ir kt.";
 "RESTART_FOOTER" = "Iš naujo paleiskite programą, kad pritaikytumėte pakeitimus";
 
@@ -63,7 +63,7 @@
 "APPLY_DESC" = "Uždaro programėlę, kad pritaikytu pakeitimus";
 
 "LINKS" = "Nuorodos";
-"TWITTER" = "Sekite %@ \"Twitter\"";
+"TWITTER" = "%@";
 "TWITTER_DESC" = "Sekite mane dėl atnaujinimų";
 "DISCORD" = "Prisijungti prie \"Discord\"";
 "DISCORD_DESC" = "Pranešti apie klaidas ir papildomu funkcijų užklausas";
