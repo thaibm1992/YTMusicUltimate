@@ -1,5 +1,5 @@
 "SETTINGS" = "Settings";
-"ENABLED" = "Enable YTMusicUltimate";
+"ENABLED" = "Enable";
 "ENABLED_DESC" = "Premium features, no ads, background playback, etc.";
 "RESTART_FOOTER" = "Restart the app to apply changes";
 
@@ -63,7 +63,7 @@
 "APPLY_DESC" = "Closes the app to apply changes";
 
 "LINKS" = "Links";
-"TWITTER" = "Follow %@ on Twitter";
+"TWITTER" = "%@";
 "TWITTER_DESC" = "Follow me for updates";
 "DISCORD" = "Join the Discord";
 "DISCORD_DESC" = "Report bugs and request features";
