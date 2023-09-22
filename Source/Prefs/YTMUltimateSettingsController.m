@@ -64,7 +64,7 @@
     } if (section == 2) {
         NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
         NSString *appVersion = infoDictionary[@"CFBundleShortVersionString"];
-        return [NSString stringWithFormat:@"\nYouTubeMusic: v%@\nYTMusicUltimate: v%@\n\n© Ginsu (@ginsudev) 2021-2023", appVersion, @(OS_STRINGIFY(TWEAK_VERSION))];
+        return [NSString stringWithFormat:@"\nYouTube Music: v%@\n © IOSMOD.NET", appVersion];
     }
 
     return nil;
@@ -84,7 +84,7 @@
         case 1:
             return 5;
         case 2:
-            return 4;
+            return 1;
         default:
             return 0;
     }
@@ -122,7 +122,7 @@
         cell.accessoryView = masterSwitch;
     } else if (indexPath.section == 1) {
         NSArray *sectionTitles = @[LOC(@"PREMIUM_SETTINGS"), LOC(@"PLAYER_SETTINGS"), LOC(@"THEME_SETTINGS"), LOC(@"NAVBAR_SETTINGS"), LOC(@"TABBAR_SETTINGS")];
-        NSArray *sectionImages = @[@"flame", @"play.rectangle", @"paintbrush", @"sidebar.trailing", @"dock.rectangle"];
+        NSArray *sectionImages = @[@"pencil.slash", @"play.rectangle", @"paintbrush", @"sidebar.trailing", @"dock.rectangle"];
         
         if (indexPath.row >= 0 && indexPath.row < sectionTitles.count) {
             cell.textLabel.text = sectionTitles[indexPath.row];
@@ -140,10 +140,7 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell3"];
         
         NSArray *settingsData = @[
-            @{@"text": [NSString stringWithFormat:LOC(@"TWITTER"), @"Ginsu"],  @"detail": LOC(@"TWITTER_DESC"), @"image": @"ginsu-24@2x"},
-            @{@"text": [NSString stringWithFormat:LOC(@"TWITTER"), @"Dayanch96"], @"detail": LOC(@"TWITTER_DESC"), @"image": @"dayanch96-24@2x"},
-            @{@"text": LOC(@"DISCORD"), @"detail": LOC(@"DISCORD_DESC"), @"image": @"discord-24@2x"},
-            @{@"text": LOC(@"SOURCE_CODE"), @"detail": LOC(@"SOURCE_CODE_DESC"), @"image": @"github-24@2x"}
+            @{@"text": [NSString stringWithFormat:LOC(@"TWITTER"), @"IOSMOD.NET"],  @"detail": LOC(@"TWITTER_DESC"), @"image": @"iosmod-24@2x"}
         ];
 
         NSDictionary *settingData = settingsData[indexPath.row];
@@ -191,10 +188,7 @@
     }
 
     if (indexPath.section == 2) {
-        NSArray *urls = @[@"https://twitter.com/ginsudev",
-                        @"https://twitter.com/dayanch96",
-                        @"https://discord.com/invite/BhdUyCbgkZ",
-                        @"https://github.com/ginsudev/YTMusicUltimate"];
+        NSArray *urls = @[@"https://iosmod.net"];
 
         if (indexPath.row >= 0 && indexPath.row < urls.count) {
             NSURL *url = [NSURL URLWithString:urls[indexPath.row]];
@@ -209,7 +203,7 @@
 
 #pragma mark - Nav bar stuff
 - (NSString *)title {
-    return @"YTMusicUltimate";
+    return @"IOSMOD.NET";
 }
 
 - (UIBarButtonItem *)closeButton {
