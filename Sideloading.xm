@@ -244,7 +244,7 @@ NSBundle *tweakBundle = YTMusicUltimateBundle();
     });
 }
 %end
-
+/*
 %hook YTMFirstTimeSignInViewController
 - (void)viewDidDisappear:(bool)arg1 {
     %orig;
@@ -256,7 +256,7 @@ NSBundle *tweakBundle = YTMusicUltimateBundle();
     [alertView show];
 }
 %end
-
+*/
 %ctor {
     %init;
     %init(SideloadingFixes);
